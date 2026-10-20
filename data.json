@@ -1,0 +1,79 @@
+{
+  "namaUsaha": "Seblak UMKM",
+  "labelKecil": "Seblak Prasmanan & Pedas Gurih Khas Singosari",
+  "slogan": "Pedasnya Pas, Gurihnya Bikin Nagih",
+  "pemilik": "Siti Fatimah",
+  "tahunBerdiri": "2021",
+  "karyawan": "4 orang",
+  "alamat": "Jl. Raya Singosari No. 45, Singosari, Malang, Jawa Timur",
+  "noWaTampil": "0812-3456-7890",
+  "noWa": "6281234567890",
+  "jamBuka": "Setiap hari, 10.00 - 21.00 WIB",
+  "medsos": "@seblakumkm",
+  "linkMaps": "https://maps.google.com",
+  "namaKelompok": "Siswa SMK PGRI Singosari",
+  "fotoHero": "img/seblak-hero.jpg",
+  "fakta1": "Pilihan topping prasmanan lengkap",
+  "fakta2": "Level pedas dan rempah cikur asli",
+  "fakta3": "Bahan higienis dan fresh setiap hari",
+  "cerita": "Seblak UMKM menyajikan hidangan seblak khas dengan racikan rempah cikur pilihan dan tingkat kepedasan yang bisa disesuaikan. Berawal dari kecintaan pada kuliner tradisional nusantara, kami berkomitmen menghadirkan rasa gurih mantap yang ramah di kantong pelajar dan keluarga.",
+  "keunggulan1": "Bumbu rempah cikur alami tanpa pengawet",
+  "keunggulan2": "Pilihan topping prasmanan melimpah",
+  "keunggulan3": "Kuah gurih kental berlevel pedas bebas pilih",
+  "warnaUtama": "#C82333",
+  "warnaAksen": "#E65100",
+  "warnaLatar": "#FFF8F0",
+  "warnaHarga": "#B71C1C",
+  "animasiBg": "bubbles",
+  "produk": [
+    {
+      "id": 1,
+      "nama": "Seblak Original Komplit",
+      "porsi": "1 porsi",
+      "harga": "Rp 15.000",
+      "deskripsi": "Perpaduan kerupuk kenyal, makaroni, telur orak-arik, dan kuah kencur pedas gurih khas.",
+      "foto": "img/seblak-1.jpg"
+    },
+    {
+      "id": 2,
+      "nama": "Seblak Ceker Mercon",
+      "porsi": "1 porsi",
+      "harga": "Rp 18.000",
+      "deskripsi": "Olahan ceker empuk bumbu mercon berpadu kuah merah pedas dengan topping kerupuk kenyal.",
+      "foto": "img/seblak-2.jpg"
+    },
+    {
+      "id": 3,
+      "nama": "Seblak Bakso Sosis",
+      "porsi": "1 porsi",
+      "harga": "Rp 17.000",
+      "deskripsi": "Isian melimpah irisan bakso sapi kenyal, sosis bakar, telur, dan kerupuk khas Sunda.",
+      "foto": "img/seblak-3.jpg"
+    },
+    {
+      "id": 4,
+      "nama": "Seblak Dumpling Keju",
+      "porsi": "1 porsi",
+      "harga": "Rp 20.000",
+      "deskripsi": "Sensasi dumpling keju lumer di mulut berpadu kuah seblak pedas gurih yang kental dan sedap.",
+      "foto": "img/seblak-4.jpg"
+    },
+    {
+      "id": 5,
+      "nama": "Seblak Seafood Spesial",
+      "porsi": "1 porsi",
+      "harga": "Rp 22.000",
+      "deskripsi": "Aneka olahan seafood seperti chikuwa, crabstick, fish roll dengan kuah rempah aromatik.",
+      "foto": "img/seblak-5.jpg"
+    },
+    {
+      "id": 6,
+      "nama": "Seblak Mie Kuah Pedas",
+      "porsi": "1 porsi",
+      "harga": "Rp 16.000",
+      "deskripsi": "Kombinasi mie kenyal, aneka kerupuk basah, sayuran segar, dan kuah cikur pedas membakar lidah.",
+      "foto": "img/seblak-6.jpg"
+    }
+  ],
+  "versi": 0
+}

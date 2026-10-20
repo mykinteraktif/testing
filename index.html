@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport responsif: menjamin tampilan proporsional di HP (lebar 360px) hingga laptop -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seblak UMKM - Pedasnya Pas, Gurihnya Bikin Nagih</title>
+  
+  <!-- Lembar Gaya CSS Terpadu -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="anim-bg-bubbles">
+
+  <!-- =========================================================================
+       WADAH TEMPLATE ANIMASI BACKGROUND WEBSITE
+       Dikelola secara dinamis oleh script.js (Pilihan: Standar, Partikel, Gradasi, Cahaya)
+       ========================================================================= -->
+  <div id="bg-animation-container" class="bg-animation-container" aria-hidden="true"></div>
+
+  <!-- =========================================================================
+       1. HEADER & NAVIGASI SEMANTIK
+       Sticky bar dengan efek blur kaca, logo teks, dan menu responsif untuk HP & Laptop
+       ========================================================================= -->
+  <header class="header-utama">
+    <div class="kontainer nav-kontainer">
+      <!-- Logo Teks Usaha -->
+      <a href="#beranda" class="logo">
+        <span class="logo-icon">🌶️</span>
+        <span id="pub-logo-nama">Seblak UMKM</span>
+      </a>
+
+      <!-- Tombol Hamburger Menu untuk Tampilan Layar HP -->
+      <button class="nav-toggle" id="nav-toggle-btn" aria-label="Buka navigasi menu">
+        ☰ Menu
+      </button>
+
+      <!-- Navigasi Menu Publik -->
+      <nav aria-label="Navigasi Utama">
+        <ul class="nav-menu" id="nav-menu-list">
+          <li><a href="#beranda" class="nav-link active">Beranda</a></li>
+          <li><a href="#tentang" class="nav-link">Tentang</a></li>
+          <li><a href="#produk" class="nav-link">Produk</a></li>
+          <li><a href="#kontak" class="nav-link">Kontak</a></li>
+        </ul>
+      </nav>
+
+      <!-- Tombol Aksi Cepat di Header Desktop -->
+      <div class="nav-actions-group">
+        <button type="button" class="btn-nav-admin" id="btn-header-admin" title="Buka Jendela 2 (Panel Kelola)" aria-label="Kelola Toko">
+          <span>⚙️</span>
+          <span>Kelola Toko</span>
+        </button>
+        <a href="#produk" class="btn btn-wa" style="padding: 8px 18px; font-size: 0.88rem;">
+          <span>Lihat Menu</span>
+          <span>🍲</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       KONTEN UTAMA (MAIN SEMANTIK)
+       ========================================================================= -->
+  <main>
+
+    <!-- -----------------------------------------------------------------------
+         2. BAGIAN BERANDA (HERO SECTION & 3 FAKTA SINGKAT)
+         ----------------------------------------------------------------------- -->
+    <section id="beranda" class="beranda">
+      <div class="kontainer">
+        <div class="hero-grid">
+          <!-- Kolom Teks Beranda -->
+          <div class="hero-text-col">
+            <span class="hero-label" id="pub-hero-label">🔥 Seblak Prasmanan & Pedas Gurih Khas Singosari</span>
+            <h1 class="hero-title" id="pub-hero-title">Seblak UMKM</h1>
+            <p class="hero-slogan" id="pub-hero-slogan">Pedasnya Pas, Gurihnya Bikin Nagih</p>
+            
+            <!-- Identitas Pendiri & Karyawan -->
+            <div class="hero-identitas">
+              <span class="identitas-item">👤 Pemilik: <strong id="pub-hero-pemilik">Siti Fatimah</strong></span>
+              <span>·</span>
+              <span class="identitas-item">📅 Berdiri: <strong id="pub-hero-berdiri">2021</strong></span>
+              <span>·</span>
+              <span class="identitas-item">👥 Karyawan: <strong id="pub-hero-karyawan">4 orang</strong></span>
+            </div>
+
+            <!-- Tombol Aksi (CTA) WhatsApp & Produk -->
+            <div class="hero-buttons">
+              <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="btn btn-wa" id="pub-btn-hero-wa">
+                <span>💬 Pesan via WhatsApp</span>
+              </a>
+              <a href="#produk" class="btn btn-outline">
+                <span>Lihat Produk</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Kolom Foto Utama Beranda -->
+          <div class="hero-image-col">
+            <div class="hero-image-wrapper">
+              <img 
+                src="img/seblak-hero.jpg" 
+                alt="Sajian Seblak UMKM pedas gurih khas Singosari" 
+                id="pub-hero-img" 
+                class="hero-img" 
+                onerror="this.src='https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80'"
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Fakta Singkat Usaha -->
+        <div class="hero-facts">
+          <div class="fact-card">
+            <div class="fact-icon">🥢</div>
+            <div class="fact-text" id="pub-fakta-1">Pilihan topping prasmanan lengkap</div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-icon">🌶️</div>
+            <div class="fact-text" id="pub-fakta-2">Level pedas dan rempah cikur asli</div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-icon">🥗</div>
+            <div class="fact-text" id="pub-fakta-3">Bahan higienis dan fresh setiap hari</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- -----------------------------------------------------------------------
+         3. BAGIAN TENTANG USAHA (ABOUT US & 3 KEUNGGULAN)
+         ----------------------------------------------------------------------- -->
+    <section id="tentang" class="tentang">
+      <div class="kontainer">
+        <div class="section-header">
+          <span class="badge-kategori">Profil Singkat</span>
+          <h2 class="section-title" id="pub-tentang-nama">Tentang Seblak UMKM</h2>
+          <p class="section-subtitle">Mengenal cita rasa autentik dan komitmen mutu kuliner lokal kami.</p>
+        </div>
+
+        <div class="tentang-grid">
+          <!-- Cerita Singkat Usaha (2–3 Kalimat) -->
+          <div class="cerita-box">
+            <h3 class="cerita-judul">Cerita Dapur Kami</h3>
+            <p class="cerita-teks" id="pub-cerita-teks">
+              Seblak UMKM menyajikan hidangan seblak khas dengan racikan rempah cikur pilihan dan tingkat kepedasan yang bisa disesuaikan. Berawal dari kecintaan pada kuliner tradisional nusantara, kami berkomitmen menghadirkan rasa gurih mantap yang ramah di kantong pelajar dan keluarga.
+            </p>
+          </div>
+
+          <!-- 3 Keunggulan Toko -->
+          <div class="keunggulan-list">
+            <div class="keunggulan-item">
+              <span class="keunggulan-nomor">1</span>
+              <p class="keunggulan-teks" id="pub-keunggulan-1">Bumbu rempah cikur alami tanpa pengawet</p>
+            </div>
+            <div class="keunggulan-item">
+              <span class="keunggulan-nomor">2</span>
+              <p class="keunggulan-teks" id="pub-keunggulan-2">Pilihan topping prasmanan melimpah</p>
+            </div>
+            <div class="keunggulan-item">
+              <span class="keunggulan-nomor">3</span>
+              <p class="keunggulan-teks" id="pub-keunggulan-3">Kuah gurih kental berlevel pedas bebas pilih</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- -----------------------------------------------------------------------
+         4. BAGIAN PRODUK (KATALOG 6 MENU SEBLAK)
+         Responsif: 3 kolom di laptop, 2 kolom di tablet, 1 kolom di HP (360px)
+         ----------------------------------------------------------------------- -->
+    <section id="produk" class="produk">
+      <div class="kontainer">
+        <div class="section-header">
+          <span class="badge-kategori">Daftar Menu Favorit</span>
+          <h2 class="section-title">Katalog Seblak Istimewa</h2>
+          <p class="section-subtitle">Dibuat dari bahan segar berkualitas, diracik mendadak saat dipesan agar selalu nikmat dan panas mengepul.</p>
+        </div>
+
+        <!-- Wadah Kartu Produk yang Di-render Dinamis oleh script.js -->
+        <div class="produk-grid" id="pub-produk-container">
+          <!-- Konten kartu seblak 1 sampai 6 dimuat secara otomatis dari script.js / localStorage -->
+        </div>
+      </div>
+    </section>
+
+    <!-- -----------------------------------------------------------------------
+         5. BAGIAN KONTAK DAN LOKASI
+         Kontak WhatsApp, Jam Buka, Media Sosial, & Tempat Peta Google Maps
+         ----------------------------------------------------------------------- -->
+    <section id="kontak" class="kontak">
+      <div class="kontainer">
+        <div class="section-header">
+          <span class="badge-kategori">Informasi Outlet</span>
+          <h2 class="section-title">Kontak & Lokasi Kami</h2>
+          <p class="section-subtitle">Silakan datang langsung ke kedai kami atau hubungi kami melalui WhatsApp untuk pemesanan cepat.</p>
+        </div>
+
+        <div class="kontak-grid">
+          <!-- Kartu Info Kontak & Jam Buka -->
+          <div class="kontak-info-card">
+            <!-- WhatsApp -->
+            <div class="kontak-item">
+              <div class="kontak-item-icon">📱</div>
+              <div class="kontak-item-detail">
+                <h4>WhatsApp Layanan Pelanggan</h4>
+                <p id="pub-kontak-wa-tampil">0812-3456-7890</p>
+                <div style="margin-top: 8px;">
+                  <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="btn btn-wa" id="pub-btn-chat-wa" style="padding: 8px 18px; font-size: 0.88rem;">
+                    💬 Chat WhatsApp Sekarang
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alamat Lengkap -->
+            <div class="kontak-item">
+              <div class="kontak-item-icon">📍</div>
+              <div class="kontak-item-detail">
+                <h4>Alamat Outlet</h4>
+                <p id="pub-kontak-alamat">Jl. Raya Singosari No. 45, Singosari, Malang, Jawa Timur</p>
+              </div>
+            </div>
+
+            <!-- Tabel Jam Buka Semantik -->
+            <div class="kontak-item">
+              <div class="kontak-item-icon">⏰</div>
+              <div class="kontak-item-detail" style="width: 100%;">
+                <h4>Jam Operasional Kedai</h4>
+                <table class="tabel-jam-buka">
+                  <thead>
+                    <tr>
+                      <th>Hari</th>
+                      <th>Jam Buka</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Senin - Minggu</td>
+                      <td id="pub-kontak-jam">Setiap hari, 10.00 - 21.00 WIB</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Media Sosial -->
+            <div class="kontak-item">
+              <div class="kontak-item-icon">🌐</div>
+              <div class="kontak-item-detail">
+                <h4>Media Sosial Resmi</h4>
+                <p id="pub-kontak-medsos">@seblakumkm</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wadah Tempat Peta Google Maps -->
+          <div class="peta-wrapper">
+            <!-- TEMPEL KODE IFRAME GOOGLE MAPS DI SINI -->
+            <div class="peta-mockup">
+              <div class="peta-icon">📍</div>
+              <h3 style="font-family: var(--font-judul); font-size: 1.2rem; color: #1E293B; margin-bottom: 6px;">Peta Lokasi Kedai Singosari</h3>
+              <p style="font-size: 0.9rem; color: #64748B; max-width: 320px;">
+                <!-- TEMPEL KODE IFRAME GOOGLE MAPS DI SINI -->
+                Kode iframe peta Google Maps dapat disematkan di sini kapan saja.
+              </p>
+            </div>
+
+            <!-- Tombol Buka di Google Maps -->
+            <div class="peta-actions">
+              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline" id="pub-btn-maps" style="width: 100%;">
+                <span>🗺️ Buka di Google Maps</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       6. FOOTER SEMANTIK
+       Hak cipta dan tautan kecil menuju panel admin
+       ========================================================================= -->
+  <footer class="footer-utama">
+    <div class="kontainer footer-content">
+      <p>© <span id="pub-footer-tahun">2026</span> <span id="pub-footer-nama-usaha">Seblak UMKM</span> · Website dibuat oleh <span id="pub-footer-kelompok">Siswa SMK PGRI Singosari</span>.</p>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       7. TOMBOL MENGAMBANG (FLOATING ACTION BUTTONS)
+       ========================================================================= -->
+  <!-- Tombol WhatsApp Mengambang di Pojok Kanan Bawah -->
+  <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="wa-float" id="pub-float-wa" aria-label="Hubungi kami via WhatsApp">
+    💬
+  </a>
+
+  <!-- =========================================================================
+       MODAL LOGIN PINTU MASUK ADMIN (PROTEKSI KATA SANDI)
+       Kata sandi default: makansantai (bisa diganti dari dalam panel)
+       ========================================================================= -->
+  <div class="modal-overlay tersembunyi" id="modal-login-admin">
+    <div class="modal-login-box">
+      <button type="button" class="btn-tutup-modal" style="position: absolute; top: 16px; right: 16px;" onclick="tutupModalAdminLogin()" aria-label="Tutup modal login admin">✕</button>
+      <div class="login-icon">🔐</div>
+      <h2 class="login-title">Panel Kelola UMKM</h2>
+      <p class="login-subtitle">Masukkan kata sandi pengelola untuk mengatur seluruh konten website Seblak UMKM</p>
+
+      <!-- Pesan Peringatan Jika Kata Sandi Salah -->
+      <div class="login-error-msg" id="login-admin-error">
+        Kata sandi salah! Akses ditolak.
+      </div>
+
+      <div class="login-form-group">
+        <label for="input-pass-admin-modal" class="login-label">Kata Sandi Pengelola</label>
+        <input 
+          type="password" 
+          id="input-pass-admin-modal" 
+          class="login-input" 
+          placeholder="Ketik kata sandi di sini..." 
+          autocomplete="current-password"
+        >
+      </div>
+
+      <button type="button" class="btn btn-wa" id="btn-submit-admin-login" style="width: 100%; border-radius: var(--radius-md);">
+        <span>Masuk ke Panel Kelola</span>
+        <span>➔</span>
+      </button>
+
+      <div class="login-hint">
+        💡 <strong>Petunjuk:</strong> Kata sandi default adalah <code>makansantai</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL JENDELA 2: PANEL PENGATURAN LENGKAP DI DALAM HALAMAN
+       Dapat mengubah seluruh teks, upload foto dari file, tema warna, animasi, & ganti sandi
+       ========================================================================= -->
+  <div class="modal-overlay tersembunyi" id="modal-jendela-2">
+    <div class="modal-jendela2-wrapper">
+      
+      <!-- Header Jendela 2 -->
+      <header class="modal-jendela2-header">
+        <div class="modal-jendela2-title">
+          <span>🌶️</span>
+          <span>Panel Kelola Pengaturan Website</span>
+          <span class="badge-status-sync" id="sync-status-badge">🟢 Terhubung Langsung ke Halaman</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <a href="admin.html" target="_blank" class="btn btn-outline" style="padding: 6px 14px; font-size: 0.82rem;" title="Buka dalam tab terpisah">
+            <span>↗️ Tab admin.html</span>
+          </a>
+          <button type="button" class="btn-tutup-modal" onclick="tutupJendela2()" aria-label="Tutup Jendela 2">✕</button>
+        </div>
+      </header>
+
+      <!-- Isi Pengaturan Jendela 2 -->
+      <div class="modal-jendela2-body admin-wrapper" style="padding-top: 10px;">
+        
+        <!-- 1. IDENTITAS USAHA & TEKS BERANDA -->
+        <section class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">
+              <span>🏪</span>
+              <span>1. Identitas Usaha & Teks Beranda</span>
+            </h3>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="adm-nama-usaha">Nama Usaha / Website</label>
+              <input type="text" id="adm-nama-usaha" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adm-label-kecil">Label Kecil di Atas Judul</label>
+              <input type="text" id="adm-label-kecil" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adm-slogan">Slogan Usaha</label>
+            <input type="text" id="adm-slogan" class="form-input">
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label class="form-label" for="adm-pemilik">Nama Pemilik</label>
+              <input type="text" id="adm-pemilik" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adm-tahun-berdiri">Tahun Berdiri</label>
+              <input type="text" id="adm-tahun-berdiri" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adm-karyawan">Jumlah Karyawan</label>
+              <input type="text" id="adm-karyawan" class="form-input">
+            </div>
+          </div>
+
+          <!-- Upload Foto Utama Hero -->
+          <div class="form-group">
+            <label class="form-label">Foto Utama Beranda (Hero Banner)</label>
+            <input type="text" id="adm-foto-hero" class="form-input" placeholder="img/seblak-hero.jpg" style="margin-bottom: 8px;">
+            <div class="file-upload-box">
+              <img src="img/seblak-hero.jpg" id="preview-foto-hero" alt="Preview Foto Utama" class="file-preview-thumb">
+              <div class="file-upload-controls">
+                <label class="btn-file-pilih" for="file-foto-hero">
+                  📁 Pilih Foto dari Laptop...
+                </label>
+                <input type="file" id="file-foto-hero" accept="image/*">
+                <div class="file-nama-info">Foto otomatis dibaca dan disimpan ke peramban.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adm-alamat">Alamat Lengkap Outlet / Warung</label>
+            <textarea id="adm-alamat" class="form-textarea"></textarea>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="adm-no-wa-tampil">WhatsApp (Ditampilkan)</label>
+              <input type="text" id="adm-no-wa-tampil" class="form-input" placeholder="0812-3456-7890">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adm-no-wa">Nomor WhatsApp Teknis (Format 62...)</label>
+              <input type="text" id="adm-no-wa" class="form-input" placeholder="6281234567890">
+            </div>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label class="form-label" for="adm-jam-buka">Jam Operasional / Buka</label>
+              <input type="text" id="adm-jam-buka" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adm-medsos">Akun Media Sosial</label>
+              <input type="text" id="adm-medsos" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adm-nama-kelompok">Nama Kelompok Pembuat (Footer)</label>
+              <input type="text" id="adm-nama-kelompok" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adm-link-maps">Tautan Google Maps Lokasi Usaha</label>
+            <input type="text" id="adm-link-maps" class="form-input" placeholder="https://maps.google.com">
+          </div>
+        </section>
+
+        <!-- 2. FAKTA SINGKAT, CERITA & KEUNGGULAN -->
+        <section class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">
+              <span>📖</span>
+              <span>2. Fakta Singkat & Cerita Usaha</span>
+            </h3>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label class="form-label" for="adm-fakta-1">Fakta Singkat 1</label>
+              <input type="text" id="adm-fakta-1" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adm-fakta-2">Fakta Singkat 2</label>
+              <input type="text" id="adm-fakta-2" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adm-fakta-3">Fakta Singkat 3</label>
+              <input type="text" id="adm-fakta-3" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adm-cerita">Cerita Singkat Usaha (2–3 Kalimat)</label>
+            <textarea id="adm-cerita" class="form-textarea" style="min-height: 90px;"></textarea>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label class="form-label" for="adm-keunggulan-1">Keunggulan 1</label>
+              <input type="text" id="adm-keunggulan-1" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adm-keunggulan-2">Keunggulan 2</label>
+              <input type="text" id="adm-keunggulan-2" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adm-keunggulan-3">Keunggulan 3</label>
+              <input type="text" id="adm-keunggulan-3" class="form-input">
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. PENGATURAN WARNA & ANIMASI LATAR BELAKANG -->
+        <section class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">
+              <span>🎨</span>
+              <span>3. Tema Warna & Animasi Latar Belakang</span>
+            </h3>
+          </div>
+
+          <div class="form-grid-4">
+            <div class="form-group">
+              <label class="form-label" for="adm-warna-utama">Warna Utama</label>
+              <div class="color-picker-box">
+                <input type="color" id="adm-warna-utama" class="color-input">
+                <span style="font-weight: 600; font-size: 0.88rem;">Merah Cabai</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="adm-warna-aksen">Warna Aksen</label>
+              <div class="color-picker-box">
+                <input type="color" id="adm-warna-aksen" class="color-input">
+                <span style="font-weight: 600; font-size: 0.88rem;">Oranye Rempah</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="adm-warna-latar">Warna Latar Belakang</label>
+              <div class="color-picker-box">
+                <input type="color" id="adm-warna-latar" class="color-input">
+                <span style="font-weight: 600; font-size: 0.88rem;">Krem Lembut</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="adm-warna-harga">Warna Penegasan Harga</label>
+              <div class="color-picker-box">
+                <input type="color" id="adm-warna-harga" class="color-input">
+                <span style="font-weight: 600; font-size: 0.88rem;">Merah Pekat</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Template Animasi Background -->
+          <div class="form-group" style="margin-top: 10px;">
+            <label class="form-label" for="adm-animasi-bg">✨ Pilihan Template Animasi Background Website</label>
+            <select id="adm-animasi-bg" class="form-select">
+              <option value="bubbles">🌶️ Partikel Pedas Melayang (Spicy Bubbles & Cabe Bara)</option>
+              <option value="gradient">🌊 Gelombang Gradasi Hangat (Warm Gradient Wave)</option>
+              <option value="pulse">✨ Cahaya Hangat Berdenyut (Warm Ambient Pulse Glow)</option>
+              <option value="none">⚪ Standar Bersih (Tanpa Animasi)</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- 4. PENGELOLAAN KATALOG 6 MENU SEBLAK -->
+        <section class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">
+              <span>🍜</span>
+              <span>4. Pengelolaan Katalog 6 Menu Seblak</span>
+            </h3>
+          </div>
+          <p style="color: var(--warna-teks-lembut); margin-bottom: 20px; font-size: 0.92rem;">
+            Ubah nama, porsi, harga, deskripsi, serta ganti foto langsung memilih dari file laptop.
+          </p>
+
+          <div id="admin-form-produk-container">
+            <!-- Di-generate secara dinamis oleh script.js -->
+          </div>
+        </section>
+
+        <!-- 5. KEAMANAN / GANTI KATA SANDI ADMIN -->
+        <section class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">
+              <span>🔑</span>
+              <span>5. Ganti Kata Sandi Pengelola</span>
+            </h3>
+          </div>
+          <p style="color: var(--warna-teks-lembut); margin-bottom: 16px; font-size: 0.9rem;">
+            Kata sandi default adalah <code>makansantai</code>. Anda dapat mengubahnya sewaktu-waktu di sini.
+          </p>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label class="form-label" for="adm-pass-lama">Kata Sandi Saat Ini</label>
+              <input type="password" id="adm-pass-lama" class="form-input" placeholder="Ketik sandi lama...">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adm-pass-baru">Kata Sandi Baru</label>
+              <input type="password" id="adm-pass-baru" class="form-input" placeholder="Minimal 4 karakter...">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="adm-pass-konfirmasi">Konfirmasi Sandi Baru</label>
+              <input type="password" id="adm-pass-konfirmasi" class="form-input" placeholder="Ulangi sandi baru...">
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-outline" id="btn-ganti-password" style="font-size: 0.88rem; padding: 8px 20px;">
+            <span>🔒 Perbarui Kata Sandi</span>
+          </button>
+        </section>
+
+      </div>
+
+      <!-- Footer Aksi Jendela 2 -->
+      <footer class="modal-jendela2-footer">
+        <div>
+          <strong style="display: block; font-size: 0.95rem; color: var(--warna-teks);">⚡ Auto-Save & Sinkron Langsung</strong>
+          <span style="font-size: 0.82rem; color: var(--warna-teks-lembut);">
+            Setiap perubahan tersimpan ke <code>localStorage</code> dan langsung tampil di Jendela 1.
+          </span>
+        </div>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button type="button" id="btn-reset-default" class="btn btn-outline" style="border-color: #DC2626; color: #DC2626; padding: 10px 18px;">
+            <span>🔄 Reset ke Data Awal</span>
+          </button>
+          <button type="button" id="btn-simpan-semua" class="btn btn-wa" style="padding: 10px 22px;">
+            <span>💾 Simpan & Terapkan</span>
+          </button>
+          <button type="button" class="btn btn-outline" onclick="tutupJendela2()" style="padding: 10px 18px;">
+            <span>✕ Tutup</span>
+          </button>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Pengaturan Firebase (isi agar perubahan tampil di semua perangkat) -->
+  <script src="firebase-config.js"></script>
+  <!-- Berkas Logika JavaScript Murni -->
+  <script src="script.js"></script>
+</body>
+</html>
