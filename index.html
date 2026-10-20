@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- Pengaturan dasar halaman -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171323">
+  <meta name="description" content="Jelajahi koleksi buket bunga Beauty Bukett Singosari.">
+  <title>Beauty Bukett Singosari | Flower Atelier</title>
+
+  <!-- Font elegan untuk tampilan butik -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+  <!-- File CSS dan JavaScript -->
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Latar aurora bergerak -->
+  <div class="aurora-background" aria-hidden="true">
+    <div class="aurora aurora-one"></div>
+    <div class="aurora aurora-two"></div>
+    <div class="aurora aurora-three"></div>
+    <div class="star-field"></div>
+  </div>
+
+  <!-- Garis progres halaman -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navigasi liquid glass -->
+  <header class="site-header glass">
+    <a class="brand" href="#beranda" aria-label="Beauty Bukett, kembali ke beranda">
+      <span class="brand-logo-wrap">
+        <img src="assets/logo.jpeg" alt="Logo Beauty Bukett" class="brand-logo">
+      </span>
+      <span class="brand-text">
+        <strong>BEAUTY BUKETT</strong>
+        <small>SINGOSARI · FLOWER ATELIER</small>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Navigasi utama">
+      <a href="#beranda">Beranda</a>
+      <a href="#koleksi">Koleksi</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="glass-icon" id="focusSearch" type="button" aria-label="Cari buket" title="Cari buket">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+      </button>
+      <button class="glass-icon favorite-shortcut" id="showFavorites" type="button" aria-label="Tampilkan favorit" title="Favorit">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.8c0 5-8.8 10.1-8.8 10.1S3.2 13.8 3.2 8.8A4.6 4.6 0 0 1 12 6.5a4.6 4.6 0 0 1 8.8 2.3Z"/></svg>
+        <span class="count-badge" id="favoriteCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Pembuka: hanya logo dan sapaan, tanpa foto besar -->
+    <section class="hero" id="beranda">
+      <div class="hero-content">
+        <div class="welcome-pill glass">
+          <span class="live-dot"></span>
+          <span id="welcomeGreeting">Selamat datang</span>
+        </div>
+
+        <div class="hero-logo-stage">
+          <div class="logo-halo"></div>
+          <div class="logo-ring ring-one"></div>
+          <div class="logo-ring ring-two"></div>
+          <div class="hero-logo-card glass">
+            <img src="assets/logo.jpeg" alt="Logo Beauty Bukett Singosari" class="hero-logo">
+          </div>
+          <span class="orbit-spark spark-one">✦</span>
+          <span class="orbit-spark spark-two">✧</span>
+          <span class="orbit-spark spark-three">✳</span>
+        </div>
+
+        <p class="hero-overline">A LITTLE BEAUTY, A LOT OF MEANING</p>
+        <h1>Flowers that speak<br><em>from the heart.</em></h1>
+        <p class="hero-description">
+          Temukan koleksi buket bunga Beauty Bukett Singosari.
+          Pilih buket yang kamu suka, lihat detailnya, lalu tanyakan
+          pemesanan secara langsung melalui WhatsApp.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-light" href="#koleksi">Jelajahi koleksi <span>↗</span></a>
+          <a class="hero-text-link" href="#tentang">Kenali kami <span>↓</span></a>
+        </div>
+
+        <div class="hero-bottom-note">
+          <span>BEAUTY BUKETT</span>
+          <span class="note-line"></span>
+          <span>SINGOSARI, INDONESIA</span>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#koleksi" aria-label="Gulir ke koleksi">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- Katalog buket -->
+    <section class="collection section-shell" id="koleksi">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">THE FLOWER COLLECTION</span>
+          <h2>Temukan <em>favoritmu.</em></h2>
+          <p>Jelajahi koleksi dan tekan sebuah produk untuk melihat detailnya.</p>
+        </div>
+        <div class="product-count"><span id="resultCount">6</span><small> BUKET</small></div>
+      </div>
+
+      <!-- Pencarian -->
+      <div class="catalog-search glass" id="searchArea">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+        <input id="searchInput" type="search" placeholder="Cari buket..." aria-label="Cari nama buket">
+        <button id="clearSearch" type="button" aria-label="Hapus pencarian" hidden>×</button>
+      </div>
+
+      <!-- Filter dan pengurutan -->
+      <div class="catalog-tools">
+        <div class="filter-pills" aria-label="Filter koleksi">
+          <button class="filter-pill active" type="button" data-filter="all">Semua</button>
+          <button class="filter-pill" type="button" data-filter="buket">Buket bunga</button>
+          <button class="filter-pill" type="button" data-filter="favorites">Favorit ♡</button>
+        </div>
+        <div class="sort-wrap">
+          <label for="sortSelect">Urutkan</label>
+          <select id="sortSelect">
+            <option value="default">Pilihan</option>
+            <option value="az">Nama A–Z</option>
+            <option value="za">Nama Z–A</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Kartu produk dirender melalui JavaScript -->
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+
+      <!-- Tampilan ketika tidak ada hasil -->
+      <div class="empty-state glass" id="emptyState" hidden>
+        <span>✧</span>
+        <h3>Belum ada hasil</h3>
+        <p>Coba kata kunci lain atau tampilkan semua produk.</p>
+        <button class="button button-light" id="resetFilters" type="button">Tampilkan semua</button>
+      </div>
+
+      <!-- Riwayat produk yang pernah dilihat -->
+      <div class="recent-section" id="recentSection" hidden>
+        <div class="recent-heading">
+          <h3>Baru kamu lihat</h3>
+          <button class="subtle-button" id="clearRecent" type="button">Hapus riwayat</button>
+        </div>
+        <div class="recent-grid" id="recentList"></div>
+      </div>
+    </section>
+
+    <!-- Tentang Beauty Bukett -->
+    <section class="about-section section-shell" id="tentang">
+      <div class="about-glass glass">
+        <div class="about-emblem">
+          <img src="assets/logo.jpeg" alt="Logo Beauty Bukett Singosari" loading="lazy">
+          <span class="emblem-orbit"></span>
+        </div>
+        <div class="about-copy">
+          <span class="eyebrow">ABOUT BEAUTY BUKETT</span>
+          <h2>Small Details.<br><em>Umkm</em></h2>
+          <p>
+            Beauty Bukett Singosari adalah UMKM yang berdiri pada tahun 2017 menjual buket bunga.
+            Lihat pilihan produk yang tersedia di katalog dan hubungi kami
+            untuk menanyakan harga, detail, serta pemesanan.
+          </p>
+          <a class="button button-outline" href="#koleksi">Lihat koleksi <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kontak dan tautan usaha -->
+    <section class="contact-section section-shell" id="kontak">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">LET'S TALK FLOWERS</span>
+          <h2>Say hello <em>to us.</em></h2>
+          <p>Hubungi Beauty Bukett Singosari untuk informasi produk.</p>
+        </div>
+      </div>
+
+      <div class="contact-grid">
+        <a class="contact-card glass" id="whatsappContact" href="#koleksi">
+          <span class="contact-symbol">↗</span>
+          <span class="contact-copy"><small>WHATSAPP</small><strong>Tanya & pesan</strong></span>
+          <span class="contact-arrow">↗</span>
+        </a>
+
+        <a class="contact-card glass" id="instagramLink" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+          <span class="contact-symbol">◎</span>
+          <span class="contact-copy"><small>INSTAGRAM</small><strong id="instagramLabel">Lihat Instagram</strong></span>
+          <span class="contact-arrow">↗</span>
+        </a>
+
+        <a class="contact-card glass" id="mapsLink" href="https://www.google.com/maps/search/?api=1&query=Beauty%20Bukett%20Singosari" target="_blank" rel="noopener noreferrer">
+          <span class="contact-symbol">⌖</span>
+          <span class="contact-copy"><small>GOOGLE MAPS</small><strong>Cari lokasi usaha</strong></span>
+          <span class="contact-arrow">↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a class="brand footer-brand" href="#beranda">
+        <span class="brand-logo-wrap"><img src="assets/logo.jpeg" alt="" class="brand-logo"></span>
+        <span class="brand-text"><strong>BEAUTY BUKETT</strong><small>SINGOSARI · FLOWER ATELIER</small></span>
+      </a>
+      <p>Beauty Bukett Singosari · Buket bunga</p>
+      <a href="#beranda" class="back-top">Kembali ke atas ↑</a>
+    </div>
+  </footer>
+
+  <!-- Navigasi praktis di layar HP -->
+  <nav class="mobile-nav glass" aria-label="Navigasi bawah">
+    <a href="#beranda"><span>⌂</span><small>Beranda</small></a>
+    <a href="#koleksi"><span>✿</span><small>Koleksi</small></a>
+    <button id="mobileSearch" type="button"><span>⌕</span><small>Cari</small></button>
+    <a href="#kontak"><span>♡</span><small>Kontak</small></a>
+  </nav>
+
+  <!-- Modal detail produk -->
+  <div class="modal-backdrop" id="detailBackdrop" hidden>
+    <section class="detail-modal glass" role="dialog" aria-modal="true" aria-labelledby="detailName">
+      <button class="modal-close" id="closeDetail" type="button" aria-label="Tutup detail">×</button>
+      <div id="detailContent"></div>
+    </section>
+  </div>
+
+  <!-- Notifikasi aksi pengguna -->
+  <div class="toast glass" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Tombol WhatsApp melayang -->
+  <a class="floating-wa" id="floatingWA" href="#kontak" aria-label="Hubungi Beauty Bukett melalui WhatsApp">
+    <span>↗</span><span>WhatsApp</span>
+  </a>
+</body>
+</html>
