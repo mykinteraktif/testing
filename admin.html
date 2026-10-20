@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Kelola Admin - Seblak UMKM</title>
+  
+  <!-- Lembar Gaya CSS Terpadu -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="admin-container">
+
+  <!-- =========================================================================
+       JENDELA LOGIN ADMIN (MODAL GATE DENGAN PROTEKSI KATA SANDI)
+       Login memakai akun admin Firebase Authentication (lihat README.md)
+       ========================================================================= -->
+  <div class="modal-overlay" id="login-modal-overlay">
+    <div class="modal-login-box">
+      <div class="login-icon">🔐</div>
+      <h2 class="login-title">Panel Kelola UMKM</h2>
+      <p class="login-subtitle">Masukkan kata sandi pengelola untuk mengatur konten website Seblak UMKM</p>
+
+      <!-- Pesan Peringatan Jika Kata Sandi Salah -->
+      <div class="login-error-msg" id="login-error-pesan">
+        Kata sandi salah! Akses ditolak.
+      </div>
+
+      <div class="login-form-group">
+        <label for="input-password-admin" class="login-label">Kata Sandi Pengelola</label>
+        <input 
+          type="password" 
+          id="input-password-admin" 
+          class="login-input" 
+          placeholder="Ketik kata sandi di sini..." 
+          autocomplete="current-password"
+        >
+      </div>
+
+      <button class="btn btn-wa" id="btn-masuk-admin" style="width: 100%; border-radius: var(--radius-md);">
+        <span>Masuk ke Panel Kelola</span>
+        <span>➔</span>
+      </button>
+
+      <div class="login-hint">
+        💡 <strong>Petunjuk:</strong> gunakan kata sandi akun admin yang dibuat di Firebase Authentication
+      </div>
+      
+      <div style="margin-top: 16px;">
+        <a href="index.html" style="font-size: 0.88rem; color: var(--warna-teks-lembut); text-decoration: underline;">
+          ← Kembali ke Halaman Publik
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       HEADER PANEL ADMIN (NAVBAR)
+       ========================================================================= -->
+  <header class="admin-navbar">
+    <div class="kontainer admin-nav-flex">
+      <div class="admin-brand">
+        <span>🌶️</span>
+        <span>Panel Kelola Seblak UMKM</span>
+        <span class="badge-status-sync" id="sync-status-badge">⏳ Menghubungkan...</span>
+      </div>
+
+      <div class="admin-header-actions">
+        <a href="index.html" target="_blank" class="btn btn-outline" style="padding: 8px 18px; font-size: 0.88rem;">
+          <span>👁️ Buka Website Publik</span>
+        </a>
+        <button id="btn-logout-admin" class="btn" style="background-color: #EF4444; color: #FFF; padding: 8px 16px; font-size: 0.88rem; border-radius: var(--radius-full);">
+          <span>Keluar</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       KONTEN FORMULIR PENGATURAN ADMIN (JENDELA 2)
+       ========================================================================= -->
+  <main class="kontainer admin-wrapper">
+
+    <!-- -----------------------------------------------------------------------
+         1. IDENTITAS USAHA & TEKS BERANDA
+         ----------------------------------------------------------------------- -->
+    <section class="admin-card">
+      <div class="admin-card-header">
+        <h3 class="admin-card-title">
+          <span>🏪</span>
+          <span>1. Identitas Usaha & Teks Beranda</span>
+        </h3>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label class="form-label" for="adm-nama-usaha">Nama Usaha / Judul Website</label>
+          <input type="text" id="adm-nama-usaha" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="adm-label-kecil">Label Kecil di Atas Judul</label>
+          <input type="text" id="adm-label-kecil" class="form-input">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="adm-slogan">Slogan Usaha</label>
+        <input type="text" id="adm-slogan" class="form-input">
+      </div>
+
+      <div class="form-grid-3">
+        <div class="form-group">
+          <label class="form-label" for="adm-pemilik">Nama Pemilik</label>
+          <input type="text" id="adm-pemilik" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="adm-tahun-berdiri">Tahun Berdiri</label>
+          <input type="text" id="adm-tahun-berdiri" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="adm-karyawan">Jumlah Karyawan</label>
+          <input type="text" id="adm-karyawan" class="form-input">
+        </div>
+      </div>
+
+      <!-- Upload Foto Utama Hero Langsung dari Laptop -->
+      <div class="form-group">
+        <label class="form-label">Foto Utama Beranda (Hero Banner)</label>
+        <input type="text" id="adm-foto-hero" class="form-input" placeholder="img/seblak-hero.jpg" style="margin-bottom: 8px;">
+        <div class="file-upload-box">
+          <img src="img/seblak-hero.jpg" id="preview-foto-hero" alt="Preview Foto Hero" class="file-preview-thumb">
+          <div class="file-upload-controls">
+            <label class="btn-file-pilih" for="file-foto-hero">
+              📁 Pilih Foto dari Laptop...
+            </label>
+            <input type="file" id="file-foto-hero" accept="image/*">
+            <div class="file-nama-info">Foto otomatis diperkecil lalu disimpan ke Firebase.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="adm-alamat">Alamat Lengkap Outlet / Warung</label>
+        <textarea id="adm-alamat" class="form-textarea"></textarea>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label class="form-label" for="adm-no-wa-tampil">WhatsApp (Ditampilkan)</label>
+          <input type="text" id="adm-no-wa-tampil" class="form-input" placeholder="0812-3456-7890">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="adm-no-wa">Nomor WhatsApp Teknis (Format 62...)</label>
+          <input type="text" id="adm-no-wa" class="form-input" placeholder="6281234567890">
+        </div>
+      </div>
+
+      <div class="form-grid-3">
+        <div class="form-group">
+          <label class="form-label" for="adm-jam-buka">Jam Operasional / Buka</label>
+          <input type="text" id="adm-jam-buka" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="adm-medsos">Akun Media Sosial</label>
+          <input type="text" id="adm-medsos" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="adm-nama-kelompok">Nama Kelompok Pembuat (Footer)</label>
+          <input type="text" id="adm-nama-kelompok" class="form-input">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="adm-link-maps">Tautan Google Maps Lokasi Usaha</label>
+        <input type="text" id="adm-link-maps" class="form-input" placeholder="https://maps.google.com">
+      </div>
+    </section>
+
+    <!-- -----------------------------------------------------------------------
+         2. FAKTA SINGKAT, CERITA & KEUNGGULAN TOKO
+         ----------------------------------------------------------------------- -->
+    <section class="admin-card">
+      <div class="admin-card-header">
+        <h3 class="admin-card-title">
+          <span>📖</span>
+          <span>2. Fakta Singkat & Cerita Usaha</span>
+        </h3>
+      </div>
+
+      <div class="form-grid-3">
+        <div class="form-group">
+          <label class="form-label" for="adm-fakta-1">Fakta Singkat 1</label>
+          <input type="text" id="adm-fakta-1" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="adm-fakta-2">Fakta Singkat 2</label>
+          <input type="text" id="adm-fakta-2" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="adm-fakta-3">Fakta Singkat 3</label>
+          <input type="text" id="adm-fakta-3" class="form-input">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="adm-cerita">Cerita Singkat Usaha (2–3 Kalimat)</label>
+        <textarea id="adm-cerita" class="form-textarea" style="min-height: 100px;"></textarea>
+      </div>
+
+      <div class="form-grid-3">
+        <div class="form-group">
+          <label class="form-label" for="adm-keunggulan-1">Keunggulan 1</label>
+          <input type="text" id="adm-keunggulan-1" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="adm-keunggulan-2">Keunggulan 2</label>
+          <input type="text" id="adm-keunggulan-2" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="adm-keunggulan-3">Keunggulan 3</label>
+          <input type="text" id="adm-keunggulan-3" class="form-input">
+        </div>
+      </div>
+    </section>
+
+    <!-- -----------------------------------------------------------------------
+         3. PENGATURAN TAMPILAN, TEMA WARNA & ANIMASI BACKGROUND
+         ----------------------------------------------------------------------- -->
+    <section class="admin-card">
+      <div class="admin-card-header">
+        <h3 class="admin-card-title">
+          <span>🎨</span>
+          <span>3. Pengaturan Tema Warna & Animasi Website</span>
+        </h3>
+      </div>
+      <p style="color: var(--warna-teks-lembut); margin-bottom: 20px; font-size: 0.95rem;">
+        Pilih warna tema dinamis untuk variabel CSS <code>:root</code> serta template animasi latar belakang.
+      </p>
+
+      <div class="form-grid-4">
+        <!-- Warna Utama -->
+        <div class="form-group">
+          <label class="form-label" for="adm-warna-utama">Warna Utama</label>
+          <div class="color-picker-box">
+            <input type="color" id="adm-warna-utama" class="color-input">
+            <span style="font-weight: 600; font-size: 0.88rem;">Merah Cabai</span>
+          </div>
+        </div>
+
+        <!-- Warna Aksen -->
+        <div class="form-group">
+          <label class="form-label" for="adm-warna-aksen">Warna Aksen</label>
+          <div class="color-picker-box">
+            <input type="color" id="adm-warna-aksen" class="color-input">
+            <span style="font-weight: 600; font-size: 0.88rem;">Oranye Rempah</span>
+          </div>
+        </div>
+
+        <!-- Warna Latar -->
+        <div class="form-group">
+          <label class="form-label" for="adm-warna-latar">Warna Latar Belakang</label>
+          <div class="color-picker-box">
+            <input type="color" id="adm-warna-latar" class="color-input">
+            <span style="font-weight: 600; font-size: 0.88rem;">Krem Lembut</span>
+          </div>
+        </div>
+
+        <!-- Warna Harga -->
+        <div class="form-group">
+          <label class="form-label" for="adm-warna-harga">Warna Penegasan Harga</label>
+          <div class="color-picker-box">
+            <input type="color" id="adm-warna-harga" class="color-input">
+            <span style="font-weight: 600; font-size: 0.88rem;">Merah Pekat</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Template Animasi Background -->
+      <div class="form-group" style="margin-top: 10px;">
+        <label class="form-label" for="adm-animasi-bg">✨ Pilihan Template Animasi Background Website</label>
+        <select id="adm-animasi-bg" class="form-select">
+          <option value="bubbles">🌶️ Partikel Pedas Melayang (Spicy Bubbles & Cabe Bara)</option>
+          <option value="gradient">🌊 Gelombang Gradasi Hangat (Warm Gradient Wave)</option>
+          <option value="pulse">✨ Cahaya Hangat Berdenyut (Warm Ambient Pulse Glow)</option>
+          <option value="none">⚪ Standar Bersih (Tanpa Animasi)</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- -----------------------------------------------------------------------
+         4. PENGELOLAAN KATALOG 6 PRODUK SEBLAK
+         ----------------------------------------------------------------------- -->
+    <section class="admin-card">
+      <div class="admin-card-header">
+        <h3 class="admin-card-title">
+          <span>🍜</span>
+          <span>4. Pengelolaan Katalog 6 Menu Seblak</span>
+        </h3>
+      </div>
+      <p style="color: var(--warna-teks-lembut); margin-bottom: 24px; font-size: 0.95rem;">
+        Kelola nama produk, porsi, harga, deskripsi singkat (maks. 25 kata), serta ganti foto langsung memilih berkas dari laptop.
+      </p>
+
+      <!-- Formulir untuk ke-6 produk di-render di sini oleh script.js -->
+      <div id="admin-form-produk-container">
+        <!-- Formulir produk 1 sampai 6 di-generate dinamis -->
+      </div>
+    </section>
+
+    <!-- -----------------------------------------------------------------------
+         5. KEAMANAN / GANTI KATA SANDI ADMIN
+         ----------------------------------------------------------------------- -->
+    <section class="admin-card">
+      <div class="admin-card-header">
+        <h3 class="admin-card-title">
+          <span>🔑</span>
+          <span>5. Ganti Kata Sandi Pengelola</span>
+        </h3>
+      </div>
+      <p style="color: var(--warna-teks-lembut); margin-bottom: 16px; font-size: 0.9rem;">
+        Ini adalah kata sandi akun admin Firebase (minimal 6 karakter) dan berlaku di semua perangkat.
+      </p>
+
+      <div class="form-grid-3">
+        <div class="form-group">
+          <label class="form-label" for="adm-pass-lama">Kata Sandi Saat Ini</label>
+          <input type="password" id="adm-pass-lama" class="form-input" placeholder="Ketik kata sandi lama...">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="adm-pass-baru">Kata Sandi Baru</label>
+          <input type="password" id="adm-pass-baru" class="form-input" placeholder="Minimal 6 karakter...">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="adm-pass-konfirmasi">Konfirmasi Sandi Baru</label>
+          <input type="password" id="adm-pass-konfirmasi" class="form-input" placeholder="Ulangi kata sandi baru...">
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-outline" id="btn-ganti-password" style="font-size: 0.88rem; padding: 8px 20px;">
+        <span>🔒 Perbarui Kata Sandi</span>
+      </button>
+    </section>
+
+    <!-- -----------------------------------------------------------------------
+         6. BAR AKSI STICKY (SIMPAN PERUBAHAN & RESET DATA)
+         ----------------------------------------------------------------------- -->
+    <aside class="admin-actions-bar">
+      <div>
+        <strong style="display: block; font-size: 1rem; color: #FFFFFF;">Tersimpan Otomatis ke Firebase</strong>
+        <span style="font-size: 0.85rem; color: #94A3B8;">
+          Setiap perubahan langsung tampil di halaman utama pada semua perangkat.
+        </span>
+      </div>
+
+      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+        <button type="button" id="btn-reset-default" class="btn btn-outline" style="border-color: #EF4444; color: #EF4444;">
+          <span>🔄 Reset ke Data Awal</span>
+        </button>
+        <button type="button" id="btn-simpan-semua" class="btn btn-wa">
+          <span>💾 Simpan Semua Perubahan</span>
+        </button>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Pustaka Firebase (database real-time & login admin) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <!-- Pengaturan project Firebase milik sekolah/kelompok -->
+  <script src="firebase-config.js"></script>
+  <!-- File Logika JavaScript Murni -->
+  <script src="script.js"></script>
+</body>
+</html>
