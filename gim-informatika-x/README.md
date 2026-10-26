@@ -19,6 +19,7 @@ Disusun oleh **Mohammad Yusron Kholish, S.Kom** · SMKS PGRI Singosari · Versi 
 
 Fitur lain:
 
+- **Layar pembuka ala komputer menyala (POST BIOS)** sekitar 4 detik. Layar ini memeriksa ketujuh chip sesuai progres siswa (TUNTAS / SIAP / PADAM) dan menyapa pemain lama dengan namanya, lalu masuk ke layar judul. Bisa dilewati dengan ketuk layar atau Enter.
 - **Bekal materi** singkat dan contoh dunia kerja sebelum setiap misi.
 - **Umpan balik dan pembahasan** langsung di setiap tugas. Pada Ujian Akhir, pembahasan baru muncul setelah semua soal selesai.
 - **Petunjuk** yang boleh dipakai, dengan konsekuensi nilai tugas itu maksimal 80.

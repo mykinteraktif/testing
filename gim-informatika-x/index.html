@@ -141,6 +141,37 @@ main:focus{outline:none}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes ledon{to{fill:var(--ok)}}
 
+/* ---------- Layar boot (sebelum layar judul) ---------- */
+.boot{position:fixed;inset:0;z-index:60;background:var(--mask-deep);display:grid;place-items:center;cursor:pointer;overflow:auto;
+  padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.boot::after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,var(--shade) 0 1px,transparent 1px 4px);opacity:.35}
+.boot-in{width:min(720px,100%);display:flex;flex-direction:column;gap:14px;font-family:var(--f-mono);font-variant-ligatures:none;animation:crt .5s ease-out both;transform-origin:center}
+@keyframes crt{0%{transform:scale(.6,.004);filter:brightness(3)}55%{transform:scale(1,.004);filter:brightness(2)}100%{transform:none;filter:none}}
+.boot-head{display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.boot-head .logo{width:40px;height:40px;flex:none}
+.boot-brand{font-weight:700;color:var(--copper-lit);letter-spacing:.08em;font-size:15px}
+.boot-sub{color:var(--silk-dim);font-size:13px;font-family:var(--f-body)}
+#boot-bit{margin-left:auto}
+.boot-log{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;font-size:14px}
+.boot-log li{display:flex;align-items:baseline;gap:8px;animation:blIn .16s ease-out both}
+.bl-t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;color:var(--silk)}
+.bl-d{flex:1;min-width:14px;border-bottom:2px dotted var(--line);transform:translateY(-4px)}
+.bl-s{white-space:nowrap;font-weight:700;animation:blIn .14s .1s ease-out both}
+.bl-s.ok{color:var(--ok)} .bl-s.siap{color:var(--copper-lit)} .bl-s.padam{color:var(--silk-dim)}
+@keyframes blIn{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+.boot-bar{height:10px;border:1px solid var(--line);border-radius:99px;background:var(--mask);overflow:hidden}
+.boot-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--copper),var(--copper-lit));transition:width .2s ease}
+.boot.ready .boot-bar i{box-shadow:0 0 14px var(--copper-lit)}
+.boot-meta{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--silk-dim)}
+.boot-meta b{color:var(--copper-lit);font-variant-numeric:tabular-nums}
+.boot.ready .boot-meta span{color:var(--ok);font-weight:700}
+.boot-skip{font-size:13px;color:var(--silk-dim);text-align:center;font-family:var(--f-body);animation:kedip 1.6s ease-in-out infinite}
+@keyframes kedip{50%{opacity:.35}}
+.boot-credit{font-family:var(--f-body);font-size:13px;color:var(--silk-dim);text-align:center;border-top:1px solid var(--line);padding-top:10px}
+.boot.out{animation:bootOut .3s ease-in forwards}
+@keyframes bootOut{to{opacity:0;filter:brightness(2.2)}}
+@media (max-width:420px){.boot-log{font-size:12.5px}.boot-brand{font-size:14px}}
+
 /* ---------- Papan sirkuit (peta) ---------- */
 .hub{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start}
 .hub-head{margin-bottom:14px;display:flex;flex-direction:column;gap:4px}
@@ -1185,7 +1216,8 @@ function bunyi(j) {
 
 /* ---------- Gambar ---------- */
 function bit(mood = "biasa", size = 64) {
-  const mata = mood === "senang" ? '<path class="bel" d="M22 30q4-6 8 0M34 30q4-6 8 0"/>'
+  const mata = mood === "tidur" ? '<path class="bel" d="M22 30h8M34 30h8"/>'
+    : mood === "senang" ? '<path class="bel" d="M22 30q4-6 8 0M34 30q4-6 8 0"/>'
     : mood === "sedih" ? '<path class="bel" d="M22 27q4 5 8 0M34 27q4 5 8 0"/><path class="bel" d="M28 35q4-2 8 0"/>'
     : '<rect class="be" x="22" y="24" width="7" height="9" rx="2"/><rect class="be" x="35" y="24" width="7" height="9" rx="2"/>';
   return `<svg class="bit" viewBox="0 0 64 64" width="${size}" height="${size}" aria-hidden="true"><line class="ba" x1="32" y1="5" x2="32" y2="12"/><circle class="bl" cx="32" cy="5" r="3.5"/><rect class="bb" x="6" y="22" width="5" height="12" rx="2"/><rect class="bb" x="53" y="22" width="5" height="12" rx="2"/><rect class="bh" x="10" y="12" width="44" height="33" rx="9"/><rect class="bf" x="16" y="18" width="32" height="21" rx="5"/>${mata}<rect class="bb" x="21" y="47" width="22" height="12" rx="3"/><rect class="bh" x="27" y="50" width="10" height="3" rx="1.5"/></svg>`;
@@ -1637,7 +1669,7 @@ function pasangRiwayat(r, ganti) { try { history[ganti ? "replaceState" : "pushS
 window.addEventListener("popstate", e => { const st = e.state; go(st && st.v ? st.v : "peta", st ? st.p : null, {dariPop:true}); });
 
 function render() {
-  const v = rute.v, bar = !["splash", "profil"].includes(v);
+  const v = rute.v, bar = !["boot", "splash", "profil"].includes(v);
   $("#topbar").hidden = !bar; $("#demo-bar").hidden = !(DEMO && bar);
   const induk = MENU_INDUK[v] || v;
   $$(".nav [data-go]").forEach(b => { if (b.dataset.go === induk) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
@@ -1674,6 +1706,58 @@ function splashArt() {
     }).join("");
   };
   return `<svg class="splash-art" viewBox="0 0 360 200" aria-hidden="true">${sisi(true)}${sisi(false)}<g class="bit" transform="translate(140 40) scale(1.25)">${bit("senang", 64).replace(/^<svg[^>]*>|<\/svg>$/g, "")}</g></svg>`;
+}
+
+/* Layar boot: komputer Kota Digital menyala (POST), lalu masuk ke layar judul */
+let BOOT = 0, BOOT_KELUAR = false;
+function barisBoot() {
+  const st = i => skorLevel(LEVEL[i].id) >= KONFIG.kktp ? ["TUNTAS", "ok"] : terbuka(i) ? ["SIAP", "siap"] : ["PADAM", "padam"];
+  const cpu = S.ujian && S.ujian.lulus ? ["AKTIF", "ok"] : ujianTerbuka() ? ["SIAP", "siap"] : ["PADAM", "padam"];
+  return [
+    ["Daya masuk dari konektor PWR", "OK", "ok", "Menyalakan daya…"],
+    ["POST: memeriksa prosesor dan memori", "OK", "ok", "Memeriksa perangkat keras…"],
+    ["Memuat bekal materi 4 elemen CP", "OK", "ok", "Memuat materi…"],
+    ...LEVEL.map((L, i) => [`${L.kode} ${L.nama} (${L.el})`, ...st(i), `Memeriksa chip ${L.kode}…`]),
+    ["CPU Ujian Akhir", ...cpu, "Memeriksa prosesor utama…"],
+    ["Membangunkan robot Bit", "OK", "ok", "Membangunkan Bit…"],
+    [S.profil ? `Profil pemain: ${S.profil.nama}` : "Profil pemain: baru", "OK", "ok", "Memuat profil…"]
+  ];
+}
+VIEW.boot = () => `<section class="boot" data-act="lewati-boot" aria-label="Layar pembuka. Tekan Enter atau ketuk untuk melewati.">
+  <div class="boot-in">
+    <div class="boot-head"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect class="lg-a" x="7" y="7" width="18" height="18" rx="3"/><circle class="lg-b" cx="16" cy="16" r="3.5"/><path class="lg-c" d="M11 3v4M16 3v4M21 3v4M11 25v4M16 25v4M21 25v4M3 11h4M3 16h4M3 21h4M25 11h4M25 16h4M25 21h4"/></svg>
+      <div><p class="boot-brand">SIRKUIT BIOS v${esc(KONFIG.versi.split(" ")[0])}</p><p class="boot-sub">Papan induk Kota Digital · ${KONFIG.mapel} Fase ${KONFIG.fase}</p></div>
+      <div id="boot-bit">${bit("tidur", 56)}</div></div>
+    <ol class="boot-log" id="boot-log" aria-hidden="true"></ol>
+    <div class="boot-bar" aria-hidden="true"><i id="boot-fill"></i></div>
+    <div class="boot-meta"><span id="boot-stat">Menyalakan daya…</span><b id="boot-pct">0%</b></div>
+    <p class="boot-skip">Ketuk layar atau tekan Enter untuk melewati</p>
+    <p class="boot-credit">Disusun oleh ${esc(KONFIG.penyusun)} · ${esc(KONFIG.sekolah)}</p>
+  </div></section>`;
+MOUNT.boot = () => {
+  const id = ++BOOT, daftar = barisBoot(), log = $("#boot-log"), fill = $("#boot-fill"), pct = $("#boot-pct"), stat = $("#boot-stat");
+  BOOT_KELUAR = false; log.style.minHeight = `${daftar.length * 1.85}em`;
+  const tulis = k => {
+    const [t, s, c, ket] = daftar[k];
+    log.insertAdjacentHTML("beforeend", `<li><span class="bl-t">${esc(t)}</span><span class="bl-d"></span><span class="bl-s ${c}">[ ${s} ]</span></li>`);
+    const p = Math.round((k + 1) / daftar.length * 100); fill.style.width = p + "%"; pct.textContent = p + "%"; stat.textContent = ket;
+  };
+  const siap = () => {
+    if (id !== BOOT || rute.v !== "boot") return;
+    $(".boot").classList.add("ready"); stat.textContent = S.profil ? `Sistem siap. Halo lagi, ${S.profil.nama.split(" ")[0]}!` : "Sistem siap. Selamat datang!";
+    $("#boot-bit").innerHTML = bit("senang", 56);
+    setTimeout(() => { if (id === BOOT) selesaiBoot(); }, RM ? 1400 : 900);
+  };
+  if (RM) { daftar.forEach((_, k) => tulis(k)); siap(); return; }
+  let k = 0;
+  const lanjutBaris = () => { if (id !== BOOT || rute.v !== "boot") return; tulis(k++); if (k < daftar.length) setTimeout(lanjutBaris, 200); else siap(); };
+  setTimeout(lanjutBaris, 520);
+};
+function selesaiBoot() {
+  if (rute.v !== "boot" || BOOT_KELUAR) return; BOOT_KELUAR = true; BOOT++;
+  const el = $(".boot");
+  if (el && !RM) { el.classList.add("out"); setTimeout(() => go("splash", null, {ganti:true}), 280); }
+  else go("splash", null, {ganti:true});
 }
 
 VIEW.splash = () => `<section class="splash"><div class="splash-in">
@@ -2056,6 +2140,7 @@ async function gambarSertifikat() {
 
 /* ---------- Aksi tombol ---------- */
 const AKSI = {
+  "lewati-boot"() { selesaiBoot(); },
   mulai() { if (rute.v !== "splash") return; bunyi("klik"); go(S.profil ? "peta" : "profil"); },
   "simpan-profil"() {
     const nama = $("#in-nama").value.trim().replace(/\s+/g, " "), kelas = $("#in-kelas").value.trim().replace(/\s+/g, " "), err = $("#err-profil");
@@ -2134,12 +2219,14 @@ document.addEventListener("keydown", e => {
       const i = f.indexOf(document.activeElement); if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); } else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); } }
     return;
   }
-  if (rute.v === "splash" && (e.key === "Enter" || e.key === " " || e.key === "Escape")) { e.preventDefault(); AKSI.mulai(); return; }
+  if (rute.v === "boot") { if (e.key === "Enter" || e.key === " " || e.key === "Escape") { e.preventDefault(); AKSI["lewati-boot"](); } return; }
+  if (rute.v === "splash" && !e.repeat && (e.key === "Enter" || e.key === " " || e.key === "Escape")) { e.preventDefault(); AKSI.mulai(); return; }
   if (CTL && CTL.key && rute.v === "main" && !(MAIN && MAIN.dicek)) CTL.key(e);
 });
 
 /* ---------- Mulai ---------- */
 function start() {
+  rute = {v:"boot", p:null};
   const h = (location.hash || "").replace("#", ""), boleh = ["peta","tujuan","rapor","guru","tentang"];
   if (boleh.includes(h)) { rute = {v:h, p:null}; if (BUTUH_PROFIL.includes(h) && !S.profil) rute = {v:"profil", p:null}; }
   pasangRiwayat(rute, true); render();
